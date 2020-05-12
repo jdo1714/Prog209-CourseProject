@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <title>My First jQuery Mobile Application</title>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css"/>
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"> </script>
+  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <script src="main.js"></script>
+ </head>
+
+ <body>
+<div data-role="page" id="Home">
+
+        <div data-role="header" data-theme='b'> 
+           <h1>Welcome to my Spending tracker program!</h1>
+           <a href="#Edit" data-icon="home">Edit Budget/Spendings Page</a> 
+           <a href="#Display" data-icon="home">Display Page</a> 
+           <a href="#Chart" data-icon="home">Chart Page</a>
+
+        </div>
+
+        <div data-role="content" data-theme='c'>
+          <p>This is my course project for my Prog 209 Class. <br />
+            This program keeps track of my spending and records it (has a page dedicated to editing my spendings). It also displays a chart(maybe) which shows the percentages/portions of each type of thing I spend money on.
+          </p>
+        </div>
+
+        <div data-role="footer" data-theme='a'>
+           <h1>Created by me! (Jason Do)</h1>
+        </div>
+
+</div>
+
+<div data-role="page" id="Edit">
+
+        <div data-role="header" data-theme='b'> 
+           <h1>Edit Budget/Spending Page</h1>
+           <a href="#Home" data-icon="home">Home page</a> 
+           <a href="#Display" data-icon="home">Display Page</a> 
+           <a href="#Chart" data-icon="home">Chart Page</a>
+        </div>
+
+        <div data-role="content" data-theme='d'>
+           <p>Add code for adding to the "spending" data.</p>
+           <button id="newItem" >Add?</button>
+           <p>Add code for deleting data.</p>
+           <button id="deleteItem">Delete?</button>
+        </div>
+
+        <div data-role="footer"  data-theme='a'>
+            <h1>Copywrite Jason Do 2020</h1>
+        </div>
+</div>
+
+<div data-role="page" id="Display">
+
+            <div data-role="header" data-theme='b'> 
+               <h1>Welcome!!!</h1>
+               <a href="#Home" data-icon="home">Home page</a> 
+               <a href="#Edit" data-icon="home">Edit Page</a>
+               <a href="#Chart" data-icon="home">Chart Page</a> 
+            </div>
+    
+            <div data-role="content" data-theme='d'>
+               <p>code for displaying the data.</p>
+            </div>
+    
+            <div data-role="footer"  data-theme='a'>
+                <h1>Copywrite Jason Do 2020</h1>
+            </div>
+    
+</div>
+
+<div data-role="page" id="Chart">
+
+   <div data-role="header" data-theme='b'> 
+      <h1>Welcome!!!</h1>
+      <a href="#Home" data-icon="home">Home page</a> 
+      <a href="#Edit" data-icon="home">Edit Page</a> 
+      <a href="#Display" data-icon="home">Display Page</a> 
+   </div>
+
+   <div data-role="content" data-theme='d'>
+      <p>code for displaying the chart which would show percentages of each type of item i spend on. <br>
+         Example "types" would be like food, games, technology, utility, etc. <br>
+         If i don't get the chart working, the same data will be displaying in a more boring manner like text.
+      </p>
+   </div>
+
+   <div data-role="footer"  data-theme='a'>
+       <h1>Copywrite Jason Do 2020</h1>
+   </div>
+
+</div>
+ </body>
+ </html> 
