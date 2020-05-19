@@ -3,11 +3,12 @@
 // 3. - lets you delete a note.
 
 // define an array to hold our data.  Later this should be stored on the sever
-Notes = [];
+Spendings = [];
 // save typing time, make up 3 for testing
-Notes.push(new Note("Eat Lunch", "Make a pizza", 2));
-Notes.push(new Note("Homework", "Get Prog209 HW done early", 1));
-Notes.push(new Note("Play vid game", "kill thousands of zombies", 3));
+Spendings.push(new Spending("Lunch at Restaurant", "Food", 50, 5, 18, 20));
+Spendings.push(new Spending("New sweaters", "Clothing", 100, 3, 21, 20))
+Spendings.push(new Spending("Videogames", "Gaming", 60, 4, 20, 20));
+Spendings.push(new Spending("Snacks", "Food", 10, 5, 5, 20));
 
 // Now comes the code that must wait to run until the document is fully loaded
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -19,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // sometimes you want data to be current as you switch from one page to another
     // to do that we get a DOM event  "pagebeforeshow"
 
-    // this will refresh the data each time you navigate back to the Home page
-    $(document).on('pagebeforeshow', '#Home', function () {
+    // this will refresh the data each time you navigate back to the Display page
+    $(document).on('pagebeforeshow', '#Display', function () {
         let listUl = document.getElementById("listUl");
         UpdateDisplay(listUl);
     }
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // add a button event for adding new notes on Add page
     document.getElementById("newItem").addEventListener("click", function () {
         // use constructor, build new object and put it in array
-        Notes.push( new Note( document.getElementById("title").value, 
+        Spendings.push( new Note( document.getElementById("title").value, 
         document.getElementById("detail").value,
         document.getElementById("priority").value ) );
      });
@@ -55,10 +56,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
      document.getElementById("delete").addEventListener("click", function () {
         let which = document.getElementById("deleteItem").value;
         let found = false;
-        for(var i = 0; i < Notes.length; i++) // find the match
+        for(var i = 0; i < Spendings.length; i++) // find the match
         {
-            if(Notes[i].title === which){
-                Notes.splice(i,1);  // remove object from array
+            if(Spendings[i].title === which){
+                Spendings.splice(i,1);  // remove object from array
                 found = true;
             }
         }
@@ -72,23 +73,46 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });  // end of code that must wait for document to load before running
 
 // our constructor
-function Note(ptitle, pDetail, pPriority) {
-    this.title= ptitle;
-    this.detail = pDetail;
-    this.priority = pPriority;
+function Spending(pTitle, pType, pPrice, pDateMonth, pDateDay, pDateYear) {
+    this.title= pTitle;
+    this.type = pType;
+    this.price = pPrice;
+    this.dateMonth = pDateMonth;
+    this.dateDay = pDateDay;
+    this.dateYear = pDateYear;
   }
 
-// this function is shared by Home and Delete page to add li's to which ever ul is passed in
+// this function is used by Display page to add li's to the listUl on the page
  function UpdateDisplay(whichElement) {
     whichElement.innerHTML = "";
-    // sort by priority
-    Notes.sort(function(a, b) {
-        return (a.priority) - (b.priority);
+    // sort by date (don't know if this is the best way of accomplishing this)
+    Spendings.sort(function(a, b) {
+        if (a.dateYear > b.dateYear)
+        { return +1; }
+        if (a.dateYear < b.dateYear)
+        { return -1; }
+        if (a.dateYear = b.dateYear)
+        {
+            if (a.dateMonth > b.dateMonth)
+            { return +1; }
+            if (a.dateMonth < b.dateMonth)
+            { return -1; }
+            if (a.dateMonth = b.dateMonth)
+            {
+                if (a.dateDay > b.dateDay)
+                { return +1; }
+                if (a.dateDay < b.dateDay)
+                { return -1; }
+                if (a.dateDay = b.dateDay)
+                { return 0; }
+            }
+        }
+
     });
-    Notes.forEach(function(item, index) {
+    Spendings.forEach(function(item, index) {
         var li = document.createElement('li');
         whichElement.appendChild(li);
-        li.innerHTML=li.innerHTML + ": " + " Priority: " + item.priority + "  " + item.title + ":  " + item.detail;
+        li.innerHTML=li.innerHTML + item.dateMonth +"/"+ item.dateDay+"/"+ item.dateYear +" - <b>" + item.type + ":</b> " + item.title + ".  " + " $" + item.price;
     }); // build one li for each item in array
  }
 
