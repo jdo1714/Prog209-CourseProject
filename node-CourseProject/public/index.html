@@ -3,7 +3,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <title>My First jQuery Mobile Application</title>
-  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css"/>
+   <link rel="stylesheet" href="stylesheets/themes/doTheme.min.css" />
+   <link rel="stylesheet" href="stylesheets/themes/jquery.mobile.icons.min.css" />
+   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
   <script src="https://code.jquery.com/jquery-1.8.2.min.js"> </script>
   <script src="https://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
   <script src="./javascripts/main.js"></script>
@@ -14,10 +16,13 @@
 
         <div data-role="header" data-theme='b'> 
            <h1>Welcome to my Spending tracker program!</h1>
-           <a href="#Edit" data-icon="home">Edit Budget/Spendings Page</a> 
-           <a href="#Display" data-icon="home">Display Page</a> 
-           <a href="#Chart" data-icon="home">Chart Page</a>
-
+           <div data-role="navbar">
+              <ul>
+               <li><a href="#Edit" data-icon="star">Add/Delete Page</a></li>
+               <li><a href="#Display" data-icon="star">Display Page</a></li>
+               <li><a href="#Chart" data-icon="star">Chart Page</a></li>
+              </ul>
+           </div>
         </div>
 
         <div data-role="content" data-theme='c'>
@@ -36,26 +41,38 @@
 <div data-role="page" id="Edit">
 
         <div data-role="header" data-theme='b'> 
-           <h1>Edit Budget/Spending Page</h1>
-           <a href="#Home" data-icon="home">Home page</a> 
-           <a href="#Display" data-icon="home">Display Page</a> 
-           <a href="#Chart" data-icon="home">Chart Page</a>
+           <h1>Add/Delete Budget/Spending Page</h1>
+           <div data-role="navbar">
+              <ul>
+               <li><a href="#Home" data-icon="star">Home page</a></li> 
+               <li><a href="#Display" data-icon="star">Display Page</a></li> 
+               <li><a href="#Chart" data-icon="star">Chart Page</a></li>
+              </ul>
+           </div>
         </div>
 
         <div data-role="content" data-theme='d'>
            Title for new Spending: <input type="text" id="title">
-           Type of Spending: <input type="text" id="type">
+           Type of Spending:
+           <select id="type">
+              <option value="Food">Food</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Technology">Technology</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+           </select>
            Price (no $): <input type="text" id="price"> <br />
             <p><b>Date of purchase:</b></p>
            Month: <input type="text" id="dateMonth">
            Day: <input type="text" id="dateDay">
            Year (2 digits): <input type="text" id="dateYear">
            <button id="newItem">Add?</button>
+           <p id="status"></p>
 
            <h1>Current list of Spendings:</h1>
+           <p>Index - Date - Type - Name - Price</p>
            <ul id="editListUl"></ul>
-           <p>Add code for deleting data.</p>
-           <button id="deleteItem">Delete?</button>
+           Enter the Index of the "spending" you wish to remove: <input type="text" id="deleteItem">
+           <button id="delete">Delete?</button>
         </div>
 
         <div data-role="footer"  data-theme='a'>
@@ -67,9 +84,13 @@
 
             <div data-role="header" data-theme='b'> 
                <h1>Welcome!!!</h1>
-               <a href="#Home" data-icon="home">Home page</a> 
-               <a href="#Edit" data-icon="home">Edit Page</a>
-               <a href="#Chart" data-icon="home">Chart Page</a> 
+               <div data-role="navbar">
+                  <ul>
+                     <li><a href="#Home" data-icon="home">Home page</a></li> 
+                     <li><a href="#Edit" data-icon="home">Add/Delete Page</a></li>
+                     <li><a href="#Chart" data-icon="home">Chart Page</a></li> 
+                  </ul>
+               </div>
             </div>
     
             <div data-role="content" data-theme='d'>
@@ -87,16 +108,19 @@
 
    <div data-role="header" data-theme='b'> 
       <h1>Welcome!!!</h1>
-      <a href="#Home" data-icon="home">Home page</a> 
-      <a href="#Edit" data-icon="home">Edit Page</a> 
-      <a href="#Display" data-icon="home">Display Page</a> 
+      <div data-role="navbar">
+         <ul>
+            <li><a href="#Home" data-icon="home">Home page</a></li> 
+            <li><a href="#Edit" data-icon="home">Add/Delete Page</a></li> 
+            <li><a href="#Display" data-icon="home">Display Page</a></li> 
+         </ul>
+      </div>
    </div>
 
    <div data-role="content" data-theme='d'>
-      <p>code for displaying the chart which would show percentages of each type of item i spend on. <br>
-         Example "types" would be like food, games, technology, utility, etc. <br>
-         If i don't get the chart working, the same data will be displaying in a more boring manner like text.
-      </p>
+      <h1>Chart page</h1>
+      <div id="chartDiv"></div>
+      <p>Red = Food <br /> Blue = Technology <br /> Green = Clothing <br /> Purple = Miscellaneous</p>
    </div>
 
    <div data-role="footer"  data-theme='a'>
